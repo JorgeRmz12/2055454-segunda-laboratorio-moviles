@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/tabs" fill="clear">
+        <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Support</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-card>
+    <form #suggestionForm="ngForm" class="suggestion-form">
+      <ion-list>
+        <ion-item>
+          <ion-icon slot="start" name="chatbox-outline"></ion-icon>
+          <ion-input label="Suggestion" name="msg" placeholder="Enter Suggestion" type="text" [(ngModel)]="message" required="true" mode="md" fill="outline"></ion-input>
+        </ion-item>
+      </ion-list>
+      <ion-button expand="block" [disabled]="suggestionForm.invalid" (click)="addDocument()" routerLink="/tabs">
+        Send Suggestion
+      </ion-button>
+    </form>
+  </ion-card>
+</ion-content>

@@ -1,0 +1,97 @@
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button>
+          <ion-icon name="menu-outline"></ion-icon>
+        </ion-menu-button>
+      </ion-buttons>
+      <ion-title>Hola, Bienvenido </ion-title>
+      <ion-buttons slot="end">
+        <ion-button routerLink="/tabs/tab2">
+          <ion-icon name="search"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="ion-padding0">
+    <ion-item-group *ngIf="topArtists.length > 0">
+
+      <ion-item-divider>
+        <ion-label>Artistas Top</ion-label>
+        <ion-buttons slot="end">
+          <ion-button>
+            Ver Todo
+          </ion-button>
+        </ion-buttons>
+      </ion-item-divider>
+
+      <div class="scroll-container">
+        <ion-item *ngFor="let artist of topArtists" class="scroll-x">
+          <div class="x-container">
+            <ion-avatar>
+              <img *ngIf="artist.images && artist.images.length > 0" [src]="artist.images[0].url" [alt]="artist.name" />
+            </ion-avatar>
+            <ion-label class="label-center">{{ artist.name }}</ion-label>
+          </div>
+        </ion-item>
+      </div>
+
+    </ion-item-group>
+
+    <ion-item-group *ngIf="topPlaylists.length > 0">
+
+      <ion-item-divider>
+        <ion-label>Playlist</ion-label>
+        <ion-buttons slot="end">
+          <ion-button>
+            Ver Todo
+          </ion-button>
+        </ion-buttons>
+      </ion-item-divider>
+      
+      <div class="scroll-container">
+        <ion-item *ngFor="let playlist of topPlaylists"  class="scroll-x">
+          <div class="x-container">
+            <ion-avatar class="img-playlist">
+              <img *ngIf="playlist.images && playlist.images.length > 0" [src]="playlist.images[0].url" [alt]="playlist.name" />
+            </ion-avatar>
+            <ion-label class="label-center">{{ playlist.name }}</ion-label>
+          </div>
+        </ion-item>
+      </div>
+
+    </ion-item-group>
+
+    <ion-item-group *ngIf="newReleases.length > 0">
+      <ion-item-divider>
+        <ion-label>Canciones Top</ion-label>
+        <ion-buttons slot="end">
+          <ion-button>
+            Ver Todo
+          </ion-button>
+        </ion-buttons>
+      </ion-item-divider>
+      
+      <ion-list>
+        <ion-item *ngFor="let item of newReleases">
+          <ion-thumbnail slot="start">
+            <img [src]="item.images[0].url" [alt]="item.name" />
+          </ion-thumbnail>
+          <ion-label>
+            <h1>Artistas: 
+              <span *ngFor="let artist of item.artists; let isLast = last">{{ artist.name }}<span *ngIf="!isLast">, </span></span>
+            </h1>
+            <h2>{{ item.name }}</h2>
+          </ion-label>
+          <ion-buttons slot="end">
+            <ion-button (click)="addToFavorites(item)">
+              <ion-icon name="heart-outline"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-item>
+      </ion-list>
+    </ion-item-group>
+  </ion-content>
+</div>
